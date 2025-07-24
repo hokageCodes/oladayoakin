@@ -21,17 +21,17 @@ export const metadata = {
     "Digital Law Nigeria",
     "Branding for Legal Professionals"
   ],
-  metadataBase: new URL("https://oladayoakinmokun.com"),
+  metadataBase: new URL("https://oladayoakin.vercel.app/"),
   openGraph: {
     title: "Oladayo Akinmokun – The Cyber Lawyer",
     description:
       "Empowering lawyers and businesses through Cybersecurity Law, Data Privacy, and Personal Branding.",
-    url: "https://oladayoakinmokun.com",
+    url: "https://oladayoakin.vercel.app/",
     type: "website",
     siteName: "The Cyber Lawyer",
     images: [
       {
-        url: "/images/oladayo-og-image.jpg", // Replace with actual image
+        url: "/og-image.jpg", // Replace with actual image
         width: 1200,
         height: 630,
         alt: "Oladayo Akinmokun – The Cyber Lawyer",
@@ -45,7 +45,7 @@ export const metadata = {
       "Cybersecurity & Data Privacy Lawyer | Personal Branding Advocate | Speaker & Thought Leader",
     site: "@oladayoakinmokun", // Replace with real Twitter
     creator: "@oladayoakinmokun",
-    images: ["/images/oladayo-og-image.jpg"],
+    images: ["/og-image.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
