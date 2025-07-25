@@ -5,7 +5,7 @@ import Container from '../Container';
 
 const Footer = () => {
   return (
-    <footer className="px-2 py-10 md:my-2 dark:bg-black dark:border-t border-white/10">
+    <footer className="px-2 py-10 md:my-2 dark:bg-black">
       <Container>
         <div className="border border-black dark:bg-[#C2C2C240]/25 dark:border-white rounded-[16px] p-6 md:p-8 flex flex-col items-center gap-10">
         <div className="w-full max-w-[1280px] mx-auto border border-white rounded-[16px] p-6 md:p-8 flex flex-col items-center gap-10">

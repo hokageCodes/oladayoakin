@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { gsap } from 'gsap';
 import Image from 'next/image';
+import Container from '../Container';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -75,26 +76,7 @@ const CyberLawyerHero = ({
   useEffect(() => {
     if (!buttonRef.current || !gridRef.current) return;
 
-    const button = buttonRef.current;
     const grid = gridRef.current;
-
-    // const handleMouseEnter = () => {
-    //   gsap.to(button, {
-    //     scale: 1.05,
-    //     rotation: 2,
-    //     duration: 0.3,
-    //     ease: 'power2.out',
-    //   });
-    // };
-
-    // const handleMouseLeave = () => {
-    //   gsap.to(button, {
-    //     scale: 1,
-    //     rotation: 0,
-    //     duration: 0.3,
-    //     ease: 'power2.out',
-    //   });
-    // };
 
     let ticking = false;
     const handleScroll = () => {
@@ -111,6 +93,8 @@ const CyberLawyerHero = ({
       }
     };
 
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleConsultationClick = () => {
@@ -177,107 +161,141 @@ const CyberLawyerHero = ({
 
       <motion.div
         ref={containerRef}
-        className="relative z-10 px-2 py-10 md:py-24 md:px-16 lg:px-[64px] mx-auto"
+        className="relative z-10 py-10 md:py-24"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
       >
-        <div className="flex flex-col gap-12">
-          {/* Text & Button */}
-          <motion.div className="flex flex-col gap-6" variants={textVariants}>
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
-            <div className="flex-1 max-w-full">
-  <motion.h1
-    className="
-      text-6xl      /* base: mobile */
-      sm:text-6xl   /* small screens */
-      md:text-7xl   /* medium screens */
-      lg:text-[128px] /* large screens */
-      xl:text-[110px] /* xl screens slightly smaller */
-      2xl:text-[128px] /* 2xl restore big */
-      text-black dark:text-white 
-      leading-tight 
-      mb-2 
-      break-words
-      max-w-full
-    "
-  >
-    {name}
-  </motion.h1>
+        <Container>
+          <div className="flex flex-col gap-8 md:gap-12">
+            {/* Text & Button */}
+            <motion.div className="flex flex-col gap-4 md:gap-6" variants={textVariants}>
+              <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start gap-6 xl:gap-8">
+                <div className="flex-1 min-w-0">
+                  <motion.h1
+                    className="
+                      text-6xl
+                      sm:text-5xl
+                      md:text-6xl
+                      lg:text-7xl
+                      xl:text-8xl
+                      2xl:text-[128px]
+                      text-black dark:text-white 
+                      leading-[0.9]
+                      mb-6
+                      break-words
+                      font-medium
+                    "
+                  >
+                    {name}
+                  </motion.h1>
 
-  <motion.h2
-    className="
-      text-4xl      /* base */
-      sm:text-3xl   /* small */
-      md:text-4xl   /* medium */
-      lg:text-[96px] /* large */
-      xl:text-[80px] /* xl smaller */
-      2xl:text-[96px] /* 2xl restore */
-      font-light 
-      text-black dark:text-white 
-      lg:mt-6 
-      lg:mb-6 
-      tracking-tight
-      break-words
-      max-w-full
-    "
-  >
-    {title}
-  </motion.h2>
-</div>
+                  <motion.h2
+                    className="
+                      text-3xl
+                      sm:text-3xl
+                      md:text-4xl
+                      lg:text-5xl
+                      xl:text-6xl
+                      2xl:text-[76px]
+                      font-light 
+                      text-black dark:text-white 
+                      mt-2
+                      md:mt-4
+                      lg:mt-6
+                      tracking-tight
+                      break-words
+                      leading-[0.9]
+                    "
+                  >
+                    {title}
+                  </motion.h2>
+                </div>
 
+                <motion.button
+                  ref={buttonRef}
+                  onClick={handleConsultationClick}
+                  disabled={buttonState === 'loading'}
+                  className={`
+                    md:mt-32
+                    
+                    sm:w-48
+                    xl:w-60
+                    xl:h-60
+                    h-12
+                    sm:h-14
+                    rounded-lg
+                    xl:rounded-full
+                    text-white font-medium 
+                    text-xs
+                    sm:text-sm
+                    xl:text-lg
+                    uppercase
+                    flex items-center justify-center text-center
+                    focus:outline-none focus:ring-2 focus:ring-offset-2
+                    focus:ring-black dark:focus:ring-white
+                    transition-all duration-200
+                    xl:flex-shrink-0
+                    ${getButtonStyles()}
+                  `}
+                  variants={textVariants}
+                >
+                  <span className="px-4 xl:px-2">{getButtonText()}</span>
+                </motion.button>
+              </div>
 
-              <motion.button
-                ref={buttonRef}
-                onClick={handleConsultationClick}
-                disabled={buttonState === 'loading'}
-                className={`
-                  w-full sm:w-40 h-12 sm:h-40 
-                  rounded-md sm:rounded-full
-                  text-white font-medium text-xs uppercase
-                  flex items-center justify-center text-center
-                  focus:outline-none focus:ring-2 focus:ring-offset-2
-                  focus:ring-black dark:focus:ring-white
-                  ${getButtonStyles()}
-                `}
+              <motion.p
+                className="
+                  text-sm
+                  sm:text-base
+                  md:text-lg
+                  text-neutral-600 dark:text-neutral-400 
+                  max-w-3xl
+                  leading-relaxed
+                "
                 variants={textVariants}
               >
-                {getButtonText()}
-              </motion.button>
-            </div>
+                {tagline}
+              </motion.p>
+            </motion.div>
 
-            <motion.p
-              className="md:ml-4 text-base sm:text-md text-neutral-600 dark:text-neutral-400 max-w-2xl"
-              variants={textVariants}
+            {/* Image */}
+            <motion.div
+              className="
+                relative 
+                w-full 
+                h-[250px]
+                sm:h-[350px]
+                md:h-[450px]
+                lg:h-[550px]
+                xl:h-[650px]
+                2xl:h-[700px]
+                overflow-hidden 
+                rounded-xl
+                md:rounded-2xl
+              "
+              variants={imageVariants}
             >
-              {tagline}
-            </motion.p>
-          </motion.div>
+              <Image
+                src={imageUrl}
+                alt={`${name} - Hero`}
+                fill
+                onLoad={() => setIsLoaded(true)}
+                className={`object-cover transition-opacity duration-500 ${
+                  isLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1140px"
+                priority
+              />
 
-          {/* Image */}
-          <motion.div
-            className="relative w-full h-[300px] sm:h-[500px] lg:h-[700px] overflow-hidden rounded-2xl"
-            variants={imageVariants}
-          >
-            <Image
-              src={imageUrl}
-              alt={`${name} - Hero`}
-              fill
-              onLoad={() => setIsLoaded(true)}
-              className={`object-cover transition-opacity duration-500 ${
-                isLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-              sizes="100vw"
-              priority
-            />
-
-            {!isLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center bg-neutral-200 dark:bg-neutral-900 animate-pulse">
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">Loading...</p>
-              </div>
-            )}
-          </motion.div>
-        </div>
+              {!isLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-neutral-200 dark:bg-neutral-900 animate-pulse">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">Loading...</p>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        </Container>
       </motion.div>
     </div>
   );

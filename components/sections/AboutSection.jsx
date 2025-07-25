@@ -1,7 +1,8 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Container from '../Container';
+import { client } from '../../sanity/lib/client';
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -15,9 +16,49 @@ const fadeInVariants = {
   },
 };
 
+const Skeleton = () => (
+  <div className="animate-pulse flex flex-col lg:flex-row gap-12 lg:gap-20 text-white">
+    <div className="lg:w-[300px] shrink-0">
+      <div className="h-6 w-1/2 bg-white/20 rounded mb-2"></div>
+    </div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-lg">
+      <div className="space-y-3">
+        <div className="h-4 w-full bg-white/20 rounded" />
+        <div className="h-4 w-5/6 bg-white/20 rounded" />
+        <div className="h-4 w-3/4 bg-white/20 rounded" />
+      </div>
+      <div className="space-y-3">
+        <div className="h-4 w-full bg-white/20 rounded" />
+        <div className="h-4 w-5/6 bg-white/20 rounded" />
+        <div className="h-4 w-3/4 bg-white/20 rounded" />
+      </div>
+    </div>
+  </div>
+);
+
 const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-10%' });
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const aboutData = await client.fetch(`
+          *[_type == "about"][0] {
+            heading,
+            contentLeft,
+            contentRight
+          }
+        `);
+        setData(aboutData);
+      } catch (error) {
+        console.error('Sanity fetch failed:', error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <section className="w-full bg-linkedin dark:bg-black py-20">
@@ -27,34 +68,29 @@ const AboutSection = () => {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={fadeInVariants}
-          className="flex flex-col lg:flex-row gap-12 lg:gap-20"
         >
-          {/* Heading */}
-          <div className="lg:w-[300px] shrink-0">
-            <h2 className="text-sm font-medium leading-tight tracking-tight text-white dark:text-white">
-              •  About Me
-            </h2>
-          </div>
+          {!data ? (
+            <Skeleton />
+          ) : (
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 text-white">
+              {/* Heading */}
+              <div className="lg:w-[300px] shrink-0">
+                <h2 className="text-xl font-medium leading-tight tracking-tight text-white dark:text-white">
+                  • {data.heading}
+                </h2>
+              </div>
 
-          {/* Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-white dark:text-gray-400 text-lg leading-relaxed">
-            <div className="space-y-6">
-              <p>
-                Hi, I'm <strong className="font-semibold text-white">Oladayo Akinmokun</strong>, a corporate commercial lawyer, with a large sprinkle of litigation. I focus on Cybersecurity and Data Privacy, helping businesses and professionals navigate legal compliance.
-              </p>
-              <p>
-                With over three years of courtroom experience, I know how to defend and protect client interests across all levels of court.
-              </p>
+              {/* Content */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-lg leading-relaxed text-justify">
+                <div>
+                  <p>{data.contentLeft}</p>
+                </div>
+                <div>
+                  <p>{data.contentRight}</p>
+                </div>
+              </div>
             </div>
-            <div className="space-y-6">
-              <p>
-                I’m also big on Personal Branding — I help lawyers build strong online visibility. My mission is simple: empower and protect.
-              </p>
-              <p>
-                When I’m not deep in legal frameworks or content strategy, I’m likely watching K-dramas, vibing to BTS (Jungkook, I see you! 😊), or brainstorming my next big idea.
-              </p>
-            </div>
-          </div>
+          )}
         </motion.div>
       </Container>
     </section>
