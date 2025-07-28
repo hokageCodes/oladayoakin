@@ -9,7 +9,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: false,
   // Add this for debugging
   token: process.env.SANITY_API_TOKEN, // Optional: only if you need authenticated requests
 })

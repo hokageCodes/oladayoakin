@@ -1,0 +1,134 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #FEFBF6;
+    color: #3D3C42;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  /* NAV */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #7F5283;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: #3D3C42;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover {
+    color: #7F5283;
+  }
+  
+  /* HERO */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 2rem;
+    min-height: 100vh;
+    flex-wrap: wrap;
+  }
+  .hero-text {
+    flex: 1;
+    max-width: 600px;
+  }
+  .hero-text h1 {
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 1rem;
+  }
+  .hero-text span {
+    color: #7F5283;
+  }
+  .hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .btn {
+    background-color: #3D3C42;
+    color: white;
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background 0.3s ease;
+  }
+  .btn:hover {
+    background-color: #3F2E3E;
+  }
+  .hero-art img {
+    width: 100%;
+    max-width: 500px;
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* TECH STACK */
+  .tech-stack {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .tech-stack p {
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .icons img {
+    width: 40px;
+    height: 40px;
+    opacity: 0.8;
+    transition: transform 0.3s;
+  }
+  .icons img:hover {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+    .hero-text {
+      margin-top: 2rem;
+    }
+    .nav-links {
+      gap: 1rem;
+    }
+  }
+  
