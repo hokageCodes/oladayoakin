@@ -161,12 +161,11 @@ const CyberLawyerHero = ({
 
       <motion.div
         ref={containerRef}
-        className="relative z-10 py-10 md:py-24"
+        className="relative z-10 py-10 md:px-48 md:py-24"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
       >
-        <Container>
           <div className="flex flex-col gap-8 md:gap-12">
             {/* Text & Button */}
             <motion.div className="flex flex-col gap-4 md:gap-6" variants={textVariants}>
@@ -295,7 +294,6 @@ const CyberLawyerHero = ({
               )}
             </motion.div>
           </div>
-        </Container>
       </motion.div>
     </div>
   );
