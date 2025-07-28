@@ -12,7 +12,7 @@ export default defineConfig({
   name: 'default',
   title: 'the-cyber-lawyer',
 
-  projectId: 'ilqc1m4m',
+  projectId: 'uav1wrmc',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],
