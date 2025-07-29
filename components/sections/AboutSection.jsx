@@ -32,7 +32,7 @@ const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: '-10%' });
 
   return (
-    <section className="w-full bg-linkedin dark:bg-black py-20 text-white dark:text-gray-400">
+    <section id="about" className="w-full bg-linkedin dark:bg-black py-20 text-white dark:text-gray-400">
       <Container>
         <motion.div
           ref={ref}

@@ -138,7 +138,7 @@ const CyberLawyerHero = ({
   const isRounded = screenWidth > 375;
 
   return (
-    <div className="relative min-h-screen bg-white dark:bg-black overflow-hidden">
+    <div id="home" className="relative min-h-screen bg-white dark:bg-black overflow-hidden">
       <div
         ref={gridRef}
         className="fixed inset-0 pointer-events-none"

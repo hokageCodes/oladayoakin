@@ -36,7 +36,7 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section className="w-full bg-white dark:bg-black py-20">
+    <section id="whatido" className="w-full bg-white dark:bg-black py-20">
       <Container>
         <p className="text-xl font-medium text-black dark:text-white mb-10">
           • Projects & Collaborations
