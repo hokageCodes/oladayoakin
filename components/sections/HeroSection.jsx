@@ -45,7 +45,7 @@ const CyberLawyerHero = ({
   name = 'Oladayo Akinmokun',
   title = 'The Cyber Lawyer',
   tagline = 'Helping businesses and professionals navigate Cybersecurity, Data Privacy, and Personal Branding.',
-  imageUrl = '/speak1.jpg',
+  imageUrl = '/ccc.gif',
   onConsultationRequest,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
