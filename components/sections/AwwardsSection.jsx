@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Container from "@/components/Container";
-import { client, urlForImage } from "../../sanity/lib/client";
+import { client } from "../../sanity/lib/client";
+import { urlFor } from "../../sanity/lib/image"; // ✅ corrected import
 
 const Awards = () => {
   const [awards, setAwards] = useState([]);
@@ -50,9 +51,7 @@ const Awards = () => {
   };
 
   return (
-    <section
-      className="w-full py-12 md:py-20 bg-white text-black dark:bg-black dark:text-white relative"
-    >
+    <section className="w-full py-12 md:py-20 bg-white text-black dark:bg-black dark:text-white relative">
       <Container>
         <motion.div
           variants={containerVariants}
@@ -100,11 +99,11 @@ const Awards = () => {
                         </span>
                       </div>
 
-                      {/* Show image under the row on mobile */}
+                      {/* Mobile preview image */}
                       {hoveredAward?._id === award._id && (
                         <div className="md:hidden mt-4 w-full h-64 rounded-lg overflow-hidden">
                           <img
-                            src={urlForImage(award.image).url()}
+                            src={urlFor(award.image).url()}
                             alt={award.title}
                             className="w-full h-full object-cover"
                           />
@@ -114,7 +113,7 @@ const Awards = () => {
                   ))}
             </div>
 
-            {/* Floating image that follows mouse - Desktop only */}
+            {/* Floating desktop image preview */}
             {hoveredAward?.image && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -125,7 +124,7 @@ const Awards = () => {
                 style={{ top: mousePos.y + 20, left: mousePos.x + 20 }}
               >
                 <img
-                  src={urlForImage(hoveredAward.image).url()}
+                  src={urlFor(hoveredAward.image).url()}
                   alt={hoveredAward.title}
                   className="w-full h-full object-cover"
                 />
