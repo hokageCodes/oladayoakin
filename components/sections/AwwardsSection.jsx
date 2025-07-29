@@ -65,7 +65,7 @@ const Awards = () => {
                 className="text-gray-500 text-xl"
                 variants={itemVariants}
               >
-                Awards
+                Awards & Recognition
               </motion.h2>
             </div>
 
