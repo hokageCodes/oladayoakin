@@ -64,7 +64,7 @@ export default function SpeakingEngagements() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const containerHeight = engagements.length * 380 + 200;
+  const containerHeight = (loading ? 3 : engagements.length) * 380 + 200;
 
   const getContainerHeight = () => {
     if (!isClient) return 'auto';
@@ -74,12 +74,78 @@ export default function SpeakingEngagements() {
   const renderSkeletonCard = (_, index) => (
     <div
       key={`skeleton-${index}`}
-      className="w-full h-[344px] bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-10 flex gap-6 shadow-md"
+      className="w-full h-[344px] bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-10 flex gap-6 shadow-md flex-shrink-0"
     >
-      <Skeleton height={320} width={320} borderRadius={12} />
-      <div className="flex flex-col justify-center flex-1">
-        <Skeleton height={36} width="60%" />
-        <Skeleton height={20} width="90%" count={3} className="mt-2" />
+      <div className="w-[320px] h-[320px] flex-shrink-0">
+        <Skeleton 
+          height={320} 
+          width={320} 
+          borderRadius={12}
+          style={{ display: 'block' }}
+        />
+      </div>
+      <div className="flex flex-col justify-center flex-1 min-w-0">
+        <div className="mb-2">
+          <Skeleton 
+            height={36} 
+            width="60%" 
+            style={{ display: 'block' }}
+          />
+        </div>
+        <div className="space-y-2">
+          <Skeleton 
+            height={20} 
+            width="90%" 
+            style={{ display: 'block' }}
+          />
+          <Skeleton 
+            height={20} 
+            width="95%" 
+            style={{ display: 'block' }}
+          />
+          <Skeleton 
+            height={20} 
+            width="80%" 
+            style={{ display: 'block' }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderMobileSkeletonCard = (_, index) => (
+    <div
+      key={`mobile-skeleton-${index}`}
+      className="w-full bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-8 flex flex-col gap-4 shadow-md"
+    >
+      <div className="w-full h-[240px] flex-shrink-0">
+        <Skeleton 
+          height={240} 
+          width="100%" 
+          borderRadius={12}
+          style={{ display: 'block' }}
+        />
+      </div>
+      <div className="flex-shrink-0">
+        <div className="mb-2">
+          <Skeleton 
+            height={24} 
+            width="50%" 
+            style={{ display: 'block' }}
+          />
+        </div>
+        <div className="space-y-2">
+          <Skeleton 
+            height={16} 
+            width="100%" 
+            style={{ display: 'block' }}
+          />
+          <Skeleton 
+            height={16} 
+            width="90%" 
+            style={{ display: 'block' }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -96,21 +162,21 @@ export default function SpeakingEngagements() {
       <div className="hidden md:flex sticky top-0 h-screen items-start justify-center py-20">
         <Container>
           <div className="w-full flex gap-10">
-            <div className="w-[371px] sticky top-20">
+            <div className="w-[371px] sticky top-20 flex-shrink-0">
               <h2 className="font-darkerGrotesque text-[64px] font-medium leading-[64px] tracking-[-2px] capitalize text-[#152724] dark:text-white">
                 Speaking engagements & testimonials
               </h2>
             </div>
-            <div className="relative flex-1 h-full overflow-hidden">
+            <div className="relative flex-1 h-full overflow-hidden min-w-0">
               <div ref={cardsContainerRef} className="relative">
                 {loading
                   ? Array.from({ length: 3 }).map(renderSkeletonCard)
                   : engagements.map((item, index) => (
                       <div
                         key={item._id || index}
-                        className="w-full h-[344px] bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-10 flex gap-6 shadow-md"
+                        className="w-full h-[344px] bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-10 flex gap-6 shadow-md flex-shrink-0"
                       >
-                        <div className="w-[320px] h-[320px] rounded-[12px] overflow-hidden">
+                        <div className="w-[320px] h-[320px] rounded-[12px] overflow-hidden flex-shrink-0">
                           <Image
                             src={item.image?.asset?.url || '/fallback.jpg'}
                             alt={item.name}
@@ -119,7 +185,7 @@ export default function SpeakingEngagements() {
                             className="object-cover w-full h-full"
                           />
                         </div>
-                        <div className="flex flex-col justify-center flex-1">
+                        <div className="flex flex-col justify-center flex-1 min-w-0">
                           <h3 className="text-[36px] font-semibold leading-tight mb-2">
                             {item.name}
                           </h3>
@@ -144,24 +210,13 @@ export default function SpeakingEngagements() {
 
           <div>
             {loading
-              ? Array.from({ length: 3 }).map((_, index) => (
-                  <div
-                    key={`mobile-skeleton-${index}`}
-                    className="w-full bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-8 flex flex-col gap-4 shadow-md"
-                  >
-                    <Skeleton height={240} borderRadius={12} />
-                    <div>
-                      <Skeleton height={24} width="50%" className="mb-2" />
-                      <Skeleton count={2} height={16} width="100%" />
-                    </div>
-                  </div>
-                ))
+              ? Array.from({ length: 3 }).map(renderMobileSkeletonCard)
               : engagements.map((item, index) => (
                   <div
                     key={item._id || index}
                     className="w-full bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-8 flex flex-col gap-4 shadow-md"
                   >
-                    <div className="w-full h-[240px] rounded-[12px] overflow-hidden">
+                    <div className="w-full h-[240px] rounded-[12px] overflow-hidden flex-shrink-0">
                       <Image
                         src={item.image?.asset?.url || '/fallback.jpg'}
                         alt={item.name}
@@ -170,7 +225,7 @@ export default function SpeakingEngagements() {
                         className="object-cover w-full h-full"
                       />
                     </div>
-                    <div>
+                    <div className="flex-shrink-0">
                       <h3 className="text-[24px] font-semibold leading-snug mb-1">
                         {item.name}
                       </h3>

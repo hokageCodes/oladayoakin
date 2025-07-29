@@ -50,26 +50,20 @@ const CyberLawyerHero = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [buttonState, setButtonState] = useState('idle');
+  const [screenWidth, setScreenWidth] = useState(0);
   const containerRef = useRef(null);
   const gridRef = useRef(null);
   const buttonRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: '-10%' });
 
-  // Track dark mode dynamically for grid color
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     setIsDark(document.documentElement.classList.contains('dark'));
-
     const observer = new MutationObserver(() => {
       setIsDark(document.documentElement.classList.contains('dark'));
     });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-    });
-
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     return () => observer.disconnect();
   }, []);
 
@@ -77,16 +71,12 @@ const CyberLawyerHero = ({
     if (!buttonRef.current || !gridRef.current) return;
 
     const grid = gridRef.current;
-
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           const scrolled = window.pageYOffset;
-          gsap.set(grid, {
-            y: scrolled * 0.1,
-            ease: 'none',
-          });
+          gsap.set(grid, { y: scrolled * 0.1, ease: 'none' });
           ticking = false;
         });
         ticking = true;
@@ -95,6 +85,13 @@ const CyberLawyerHero = ({
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const updateWidth = () => setScreenWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
   }, []);
 
   const handleConsultationClick = () => {
@@ -138,22 +135,17 @@ const CyberLawyerHero = ({
     }
   };
 
+  const isRounded = screenWidth > 375;
+
   return (
     <div className="relative min-h-screen bg-white dark:bg-black overflow-hidden">
-      {/* Grid BG */}
       <div
         ref={gridRef}
         className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: isDark
-            ? `
-              linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)
-            `
-            : `
-              linear-gradient(rgba(0,0,0,0.25) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0,0,0,0.25) 1px, transparent 1px)
-            `,
+            ? `linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)`
+            : `linear-gradient(rgba(0,0,0,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.25) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
           opacity: 0.12,
         }}
@@ -161,139 +153,66 @@ const CyberLawyerHero = ({
 
       <motion.div
         ref={containerRef}
-        className="relative z-10 py-10 md:px-48 md:py-24"
+        className="relative z-10 py-10 px-2 lg:px-48 md:py-24"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
       >
-          <div className="flex flex-col gap-8 md:gap-12">
-            {/* Text & Button */}
-            <motion.div className="flex flex-col gap-4 md:gap-6" variants={textVariants}>
-              <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start gap-6 xl:gap-8">
-                <div className="flex-1 min-w-0">
-                  <motion.h1
-                    className="
-                      text-6xl
-                      sm:text-5xl
-                      md:text-6xl
-                      lg:text-7xl
-                      xl:text-8xl
-                      2xl:text-[128px]
-                      text-black dark:text-white 
-                      leading-[0.9]
-                      mb-6
-                      break-words
-                      font-medium
-                    "
-                  >
-                    {name}
-                  </motion.h1>
+        <div className="flex flex-col gap-6 md:gap-8">
+          <motion.div className="flex flex-col gap-4 md:gap-6" variants={textVariants}>
+            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6 md:gap-8">
+              <div className="flex-1 min-w-0">
+                <motion.h1 className="text-6xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[128px] text-black dark:text-white leading-[0.9] mb-6 break-words font-medium">
+                  {name}
+                </motion.h1>
 
-                  <motion.h2
-                    className="
-                      text-3xl
-                      sm:text-3xl
-                      md:text-4xl
-                      lg:text-5xl
-                      xl:text-6xl
-                      2xl:text-[76px]
-                      font-light 
-                      text-black dark:text-white 
-                      mt-2
-                      md:mt-4
-                      lg:mt-6
-                      tracking-tight
-                      break-words
-                      leading-[0.9]
-                    "
-                  >
-                    {title}
-                  </motion.h2>
-                </div>
+                <motion.h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[76px] font-light text-black dark:text-white mt-2 md:mt-4 lg:mt-6 tracking-tight break-words leading-[0.9]">
+                  {title}
+                </motion.h2>
 
-                <motion.button
-                  ref={buttonRef}
-                  onClick={handleConsultationClick}
-                  disabled={buttonState === 'loading'}
-                  className={`
-                    md:mt-32
-                    
-                    sm:w-48
-                    xl:w-60
-                    xl:h-60
-                    h-12
-                    sm:h-14
-                    rounded-lg
-                    xl:rounded-full
-                    text-white font-medium 
-                    text-xs
-                    sm:text-sm
-                    xl:text-lg
-                    uppercase
-                    flex items-center justify-center text-center
-                    focus:outline-none focus:ring-2 focus:ring-offset-2
-                    focus:ring-black dark:focus:ring-white
-                    transition-all duration-200
-                    xl:flex-shrink-0
-                    ${getButtonStyles()}
-                  `}
-                  variants={textVariants}
-                >
-                  <span className="px-4 xl:px-2">{getButtonText()}</span>
-                </motion.button>
+                <motion.p className="text-sm sm:text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed mt-4 md:mt-6" variants={textVariants}>
+                  {tagline}
+                </motion.p>
               </div>
 
-              <motion.p
-                className="
-                  text-sm
-                  sm:text-base
-                  md:text-lg
-                  text-neutral-600 dark:text-neutral-400 
-                  max-w-3xl
-                  leading-relaxed
-                "
+              <motion.button
+                ref={buttonRef}
+                onClick={handleConsultationClick}
+                disabled={buttonState === 'loading'}
+                className={`
+                  ${getButtonStyles()}
+                  ${isRounded ? 'rounded-full' : 'rounded-lg'}
+                  w-full sm:w-48 md:w-60 md:h-60 h-12 sm:h-14
+                  text-white font-medium text-xs sm:text-sm md:text-lg
+                  uppercase flex items-center justify-center text-center
+                  focus:outline-none focus:ring-2 focus:ring-offset-2
+                  focus:ring-black dark:focus:ring-white
+                  transition-all duration-200 md:flex-shrink-0
+                `}
                 variants={textVariants}
               >
-                {tagline}
-              </motion.p>
-            </motion.div>
+                <span className="px-4 md:px-2">{getButtonText()}</span>
+              </motion.button>
+            </div>
+          </motion.div>
 
-            {/* Image */}
-            <motion.div
-              className="
-                relative 
-                w-full 
-                h-[250px]
-                sm:h-[350px]
-                md:h-[450px]
-                lg:h-[550px]
-                xl:h-[650px]
-                2xl:h-[700px]
-                overflow-hidden 
-                rounded-xl
-                md:rounded-2xl
-              "
-              variants={imageVariants}
-            >
-              <Image
-                src={imageUrl}
-                alt={`${name} - Hero`}
-                fill
-                onLoad={() => setIsLoaded(true)}
-                className={`object-cover transition-opacity duration-500 ${
-                  isLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1140px"
-                priority
-              />
-
-              {!isLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-neutral-200 dark:bg-neutral-900 animate-pulse">
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">Loading...</p>
-                </div>
-              )}
-            </motion.div>
-          </div>
+          <motion.div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] xl:h-[650px] 2xl:h-[700px] overflow-hidden rounded-xl md:rounded-2xl" variants={imageVariants}>
+            <Image
+              src={imageUrl}
+              alt={`${name} - Hero`}
+              fill
+              onLoad={() => setIsLoaded(true)}
+              className={`object-cover transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1140px"
+              priority
+            />
+            {!isLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-neutral-200 dark:bg-neutral-900 animate-pulse">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">Loading...</p>
+              </div>
+            )}
+          </motion.div>
+        </div>
       </motion.div>
     </div>
   );
