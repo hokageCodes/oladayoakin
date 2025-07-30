@@ -34,26 +34,24 @@ export default function TestimonialsSection() {
     fetchTestimonials();
   }, []);
 
-  const next = () =>
-    setIndex((prev) => (prev + 1) % testimonials.length);
-  const prev = () =>
-    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const next = () => setIndex((prev) => (prev + 1) % testimonials.length);
+  const prev = () => setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
     <section className="w-full bg-white py-20 min-h-[660px] dark:bg-black">
-      <Container className="flex flex-col md:flex-row items-start justify-between gap-12">
+      <Container className="flex flex-col lg:flex-row items-start justify-between gap-12">
         {/* Left Text */}
-        <div className="min-w-[300px] md:min-w-[626px] max-w-[90%]">
+        <div className="min-w-[300px] lg:min-w-[626px] max-w-[90%]">
           <p className="text-xl font-normal dark:text-gray-500 text-black mb-2 tracking-widest uppercase">
             Testimonials
           </p>
-          <h2 className="text-[48px] md:text-[72px] font-medium leading-[90%] dark:text-white text-black tracking-[-2px] capitalize">
+          <h2 className="text-[40px] md:text-[60px] lg:text-[72px] font-medium leading-[90%] dark:text-white text-black tracking-[-2px] capitalize">
             What people say <br /> about me
           </h2>
         </div>
 
-        {/* Right Testimonial */}
-        <div className="w-full max-w-[632px] h-[500px] relative">
+        {/* Right Testimonial Card */}
+        <div className="w-full max-w-[632px] relative">
           {loading || testimonials.length === 0 ? (
             <div className="bg-gray-200 dark:bg-white rounded-2xl p-6 h-[428px] flex flex-col justify-between">
               <Skeleton count={3} height={20} />
@@ -63,15 +61,15 @@ export default function TestimonialsSection() {
               </div>
             </div>
           ) : (
-            <div className="bg-linkedin dark:bg-white rounded-2xl p-6 h-[428px] flex flex-col justify-between">
-              <div
-                className="text-lg text-white dark:text-black mb-6 overflow-hidden max-h-[280px] relative"
-              >
-                <div className="pr-2 max-h-[280px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
-                  "{testimonials[index]?.text}"
+            <div className="bg-linkedin dark:bg-white rounded-2xl p-6 min-h-[380px] sm:min-h-[420px] max-h-[480px] flex flex-col justify-between">
+              {/* Testimonial Text Scrollable */}
+              <div className="text-lg text-white dark:text-black overflow-hidden relative mb-6">
+                <div className="overflow-y-auto max-h-[220px] sm:max-h-[250px] scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 pr-2">
+                  “{testimonials[index]?.text}”
                 </div>
               </div>
 
+              {/* Name + Title */}
               <div>
                 <p className="font-semibold text-white text-lg dark:text-black">
                   {testimonials[index]?.name}
@@ -83,10 +81,10 @@ export default function TestimonialsSection() {
 
           {/* Navigation Buttons */}
           {!loading && testimonials.length > 1 && (
-            <div className="flex gap-4 mt-6 bottom-0 right-0">
+            <div className="flex gap-4 mt-6 justify-end">
               <button
                 onClick={prev}
-                className="w-12 dark:text-white h-12 rounded-full border border-2 flex items-center justify-center hover:bg-[#7F5283]"
+                className="w-12 h-12 rounded-full border dark:text-white flex items-center justify-center hover:bg-[#7F5283]"
               >
                 <ArrowLeft className="w-6 h-6" />
               </button>
