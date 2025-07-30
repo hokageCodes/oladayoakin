@@ -55,14 +55,14 @@ const Awards = () => {
       <Container>
         <motion.div
           variants={containerVariants}
-          initial="hidden"
+          initial="visible"
           whileInView="visible"
           viewport={{ once: true }}
         >
           <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-20 h-full relative">
-            <div className="mb-4 md:mb-0 flex items-start md:items-center">
+            <div className="flex items-start md:items-center">
               <motion.h2
-                className="text-gray-400 text-xl"
+                className="text-white dark:text-gray-400 text-xl"
                 variants={itemVariants}
               >
                 Awards & Recognition

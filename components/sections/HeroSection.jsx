@@ -90,31 +90,32 @@ const CyberLawyerHero = ({
           <div className="w-full bg-black rounded-2xl shadow-lg overflow-hidden p-2 sm:p-3">
   {screenWidth > 768 ? (
     <video
-      autoPlay
-      loop
-      muted
-      playsInline
-      preload="auto"
-      fetchPriority="high"
-      poster={posterImage}
-      className="w-full h-[500px] object-cover rounded-xl"
-    >
-      <source src={imageUrl} type="video/webm" />
-      <source src={imageUrl.replace('.webm', '.mp4')} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="auto"
+    fetchPriority="high"
+    poster={posterImage}
+    className="w-full h-[650px] object-cover object-top rounded-xl"
+  >
+    <source src={imageUrl} type="video/webm" />
+    <source src={imageUrl.replace('.webm', '.mp4')} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  
   ) : (
-    <Image
-      src={posterImage}
-      alt={`${name} - Hero`}
-      priority
-      fetchPriority="high"
-      width={400}
-      height={650}
-      className="w-full h-auto object-cover rounded-xl"
-    />
-  )}
-</div>
+      <Image
+        src={posterImage}
+        alt={`${name} - Hero`}
+        priority
+        fetchPriority="high"
+        width={400}
+        height={650}
+        className="w-full h-auto object-cover rounded-xl"
+      />
+      )}
+    </div>
 
         </div>
       </Container>

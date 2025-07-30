@@ -26,7 +26,6 @@ export default function ImageGallery() {
   return (
     <section className="w-full py-16 overflow-hidden bg-white dark:bg-black">
       <Container>
-        {/* Section Title */}
         <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-10 text-[#152724] dark:text-white">
           Photo Dump
         </h2>
@@ -46,9 +45,9 @@ export default function ImageGallery() {
               <motion.div
                 key={section.id}
                 onClick={() => setActiveSection(section.id)}
-                className={`relative rounded-[10px] overflow-hidden cursor-pointer transition-all duration-500 ease-in-out flex-shrink-0 ${
+                className={`relative cursor-pointer transition-all duration-500 ease-in-out flex-shrink-0 ${
                   isActive ? 'w-[500px]' : 'w-[150px]'
-                } h-full`}
+                } h-full rounded-[10px] overflow-hidden`}
                 animate={{ width: isActive ? 500 : 150 }}
               >
                 {!isLoaded && (
@@ -61,17 +60,17 @@ export default function ImageGallery() {
                 )}
 
                 <Image
-                src={section.bgImage}
-                alt={`Gallery image - ${section.id}`}
-                fill
-                onLoad={() => handleImageLoad(section.id)}
-                className={`transition-opacity duration-500 ${
+                  src={section.bgImage}
+                  alt={`Gallery image - ${section.id}`}
+                  width={500}
+                  height={600}
+                  onLoad={() => handleImageLoad(section.id)}
+                  className={`object-cover transition-opacity duration-500 w-full h-full ${
                     isLoaded ? 'opacity-100' : 'opacity-0'
-                } object-[top]`}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
-                priority={isActive}
+                  }`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
+                  priority={isActive}
                 />
-
               </motion.div>
             );
           })}
@@ -85,7 +84,7 @@ export default function ImageGallery() {
             return (
               <div
                 key={section.id}
-                className="relative w-full h-[400px] rounded-[10px] overflow-hidden"
+                className="relative w-full rounded-[10px] overflow-hidden"
               >
                 {!isLoaded && (
                   <Skeleton
@@ -95,19 +94,18 @@ export default function ImageGallery() {
                     className="absolute inset-0 z-10"
                   />
                 )}
-
                 <Image
-                src={section.bgImage}
-                alt={`Gallery image - ${section.id}`}
-                fill
-                onLoad={() => handleImageLoad(section.id)}
-                className={`transition-opacity duration-700 ${
+                  src={section.bgImage}
+                  alt={`Gallery image - ${section.id}`}
+                  width={800}
+                  height={600}
+                  onLoad={() => handleImageLoad(section.id)}
+                  className={`object-cover w-full h-full transition-opacity duration-700 ${
                     isLoaded ? 'opacity-100' : 'opacity-0'
-                } object-[top]`}
-                sizes="100vw"
-                priority={index === 0}
+                  }`}
+                  sizes="100vw"
+                  priority={index === 0}
                 />
-
               </div>
             );
           })}
@@ -116,3 +114,4 @@ export default function ImageGallery() {
     </section>
   );
 }
+    
