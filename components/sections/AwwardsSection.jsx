@@ -114,22 +114,24 @@ const Awards = () => {
             </div>
 
             {/* Floating desktop image preview */}
-            {hoveredAward?.image && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="hidden md:block fixed z-50 w-[280px] h-[340px] rounded-xl overflow-hidden pointer-events-none border border-white/10"
-                style={{ top: mousePos.y + 20, left: mousePos.x + 20 }}
-              >
-                <img
-                  src={urlFor(hoveredAward.image).url()}
-                  alt={hoveredAward.title}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            )}
+            {/* Floating desktop image preview */}
+{hoveredAward?.image && (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.95 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }}
+    className="hidden md:block fixed z-50 w-[200px] h-[120px] rounded-xl overflow-hidden pointer-events-none border border-white/10"
+    style={{ top: mousePos.y + 20, left: mousePos.x + 20 }}
+  >
+    <img
+      src={urlFor(hoveredAward.image).url()}
+      alt={hoveredAward.title}
+      className="w-full h-full object-cover transition-all duration-300 group-hover:h-[260px]"
+    />
+  </motion.div>
+)}
+
           </div>
         </motion.div>
       </Container>
