@@ -22,4 +22,23 @@ p, span, a {
   font-family: 'DM Sans', sans-serif;
 }
 
+/* styles/global.css or wherever appropriate */
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent; /* thumb and track */
+}
+
+/* For Webkit Browsers */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #d1d5db; /* Tailwind gray-300 */
+  border-radius: 4px;
+}
 

@@ -64,9 +64,10 @@ export default function TestimonialsSection() {
             <div className="bg-linkedin dark:bg-white rounded-2xl p-6 min-h-[380px] sm:min-h-[420px] max-h-[480px] flex flex-col justify-between">
               {/* Testimonial Text Scrollable */}
               <div className="text-lg text-white dark:text-black overflow-hidden relative mb-6">
-                <div className="overflow-y-auto max-h-[220px] sm:max-h-[250px] scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 pr-2">
-                  “{testimonials[index]?.text}”
-                </div>
+              <div className="overflow-y-auto max-h-[220px] sm:max-h-[250px] pr-2 scrollbar-custom">
+                “{testimonials[index]?.text}”
+              </div>
+
               </div>
 
               {/* Name + Title */}
