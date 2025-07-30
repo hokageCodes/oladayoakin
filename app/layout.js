@@ -21,12 +21,12 @@ export const metadata = {
     "Digital Law Nigeria",
     "Branding for Legal Professionals"
   ],
-  metadataBase: new URL("https://oladayoakin.vercel.app/"),
+  metadataBase: new URL("https://oladayoakinmokun.com"),
   openGraph: {
     title: "Oladayo Akinmokun – The Cyber Lawyer",
     description:
       "Empowering lawyers and businesses through Cybersecurity Law, Data Privacy, and Personal Branding.",
-    url: "https://oladayoakin.vercel.app/",
+    url: "https://oladayoakinmokun.com",
     type: "website",
     siteName: "The Cyber Lawyer",
     images: [
