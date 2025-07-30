@@ -22,13 +22,13 @@ p, span, a {
   font-family: 'DM Sans', sans-serif;
 }
 
-/* styles/global.css or wherever appropriate */
+/* styles/globals.css */
 .scrollbar-custom {
   scrollbar-width: thin;
-  scrollbar-color: #d1d5db transparent; /* thumb and track */
+  scrollbar-color: #d1d5db transparent; /* thumb | track */
 }
 
-/* For Webkit Browsers */
+/* WebKit-specific styles for Chrome, Edge, Safari */
 .scrollbar-custom::-webkit-scrollbar {
   width: 6px;
 }
@@ -38,7 +38,33 @@ p, span, a {
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: #d1d5db; /* Tailwind gray-300 */
+  background-color: #d1d5db;
   border-radius: 4px;
+}
+
+
+.dark .scrollbar-custom {
+  scrollbar-color: #4b5563 transparent;
+}
+
+.dark .scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #4b5563; /* Tailwind gray-600 */
+}
+
+
+/* styles/globals.css */
+.scrollbar-auto-hide {
+  overflow-y: auto;
+  max-height: inherit; /* Let Tailwind control this */
+  scrollbar-width: none; /* For Firefox */
+}
+
+/* Hide Webkit scrollbars (Chrome, Safari, Edge) */
+.scrollbar-auto-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-auto-hide {
+  scroll-behavior: smooth;
+  padding-right: 4px; /* for spacing from edge */
 }
 
