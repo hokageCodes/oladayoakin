@@ -69,8 +69,8 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="dark:bg-black text-[#111827] dark:text-white font-sans min-h-screen flex flex-col">
+    <html lang="en" className="bg-black scroll-smooth">
+      <body className="bg-black text-[#111827] dark:text-white font-sans min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
           {children}

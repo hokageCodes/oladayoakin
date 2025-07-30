@@ -36,7 +36,7 @@ const AboutSection = () => {
       id="about"
       aria-labelledby="about-heading"
       aria-label="About Me Section"
-      className="w-full bg-linkedin dark:bg-black pt-10 md:pt-20 text-white dark:text-gray-400"
+      className="w-full bg-black pt-10 md:pt-20 text-neutral-400"
     >
       <Container className="px-2">
         <motion.div
@@ -48,7 +48,7 @@ const AboutSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
             {/* Column 1: Title + Image */}
             <div className="flex flex-col space-y-6">
-              <h2 id="about-heading" className="text-2xl font-bold tracking-tight">
+              <h2 id="about-heading" className="text-white text-2xl font-bold tracking-tight">
                 • {staticData.heading}
               </h2>
               <div className="relative w-full aspect-[3/4] bg-white/10 rounded-2xl overflow-hidden shadow-lg">
@@ -82,7 +82,7 @@ const AboutSection = () => {
 
             {/* Closing Statement */}
             <div className="lg:col-span-3 text-center mx-auto max-w-3xl pt-8 text-base sm:text-lg font-medium leading-relaxed">
-              <p className="text-gray-400">
+              <p className="text-neutral-400">
                 If you are looking for a lawyer who blends legal expertise with digital risk strategy, and is passionate
                 about growing the next generation, you are in the right place.
               </p>
