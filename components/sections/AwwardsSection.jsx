@@ -62,7 +62,7 @@ const Awards = () => {
           <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-20 h-full relative">
             <div className="mb-4 md:mb-0 flex items-start md:items-center">
               <motion.h2
-                className="text-gray-500 text-xl"
+                className="text-gray-400 text-xl"
                 variants={itemVariants}
               >
                 Awards & Recognition
