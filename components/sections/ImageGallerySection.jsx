@@ -10,8 +10,8 @@ import Container from '@/components/Container';
 const sections = [
   { id: 'extra1', bgImage: '/02.webp' },
   { id: 'combo', bgImage: '/pass.webp' },
-  { id: 'wings', bgImage: '/o.jpeg' },
-  { id: 'laps', bgImage: '/law.JPG' },
+  { id: 'wings', bgImage: '/o.webp' },
+  { id: 'laps', bgImage: '/law.webp' },
   { id: 'extra2', bgImage: '/the-cyber-lawyer.webp' },
 ];
 
