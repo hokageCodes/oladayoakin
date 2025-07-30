@@ -12,9 +12,6 @@ module.exports = {
         linkedin: '#0077B5',
       },
     },
-  },
-  plugins: [
-    require('tailwind-scrollbar'),
-  ],  
+  },  
 }
 
