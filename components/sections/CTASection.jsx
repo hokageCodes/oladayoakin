@@ -9,7 +9,7 @@ const CTASection = () => {
       <Container>
         <div
           className="relative h-full w-full rounded-[16px] overflow-hidden border bg-cover bg-center"
-          style={{ backgroundImage: "url('/cta-bg.jpg')" }}
+          style={{ backgroundImage: "url('/cta-bg.webp')" }}
         >
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/40 z-10 rounded-[16px]" />

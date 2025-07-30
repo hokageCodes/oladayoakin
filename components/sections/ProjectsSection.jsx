@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { client } from '../../sanity/lib/client';
 import Container from '../Container';
+import ProjectCard from '../ProjectCard';
 
 const PROJECTS_QUERY = `*[_type == "project"]{
   _id,
@@ -11,7 +11,10 @@ const PROJECTS_QUERY = `*[_type == "project"]{
   description,
   image {
     asset -> {
-      url
+      url,
+      metadata {
+        lqip
+      }
     }
   }
 }`;
@@ -36,11 +39,14 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section id="whatido" className="w-full bg-white dark:bg-black py-20">
-      <Container>
-        <p className="text-xl font-medium text-black dark:text-white mb-10">
+    <section id="whatido" aria-labelledby="projects-heading" className="w-full bg-white dark:bg-black py-20">
+      <Container className="px-2">
+        <h2
+          id="projects-heading"
+          className="text-xl font-medium text-black dark:text-white mb-10"
+        >
           • Projects & Collaborations
-        </p>
+        </h2>
 
         {loading ? (
           <div className="w-full bg-white dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-4 sm:p-8">
@@ -68,40 +74,16 @@ export default function ProjectsSection() {
           </div>
         ) : (
           <div className="w-full bg-white dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-4 sm:p-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-              {projects.map((project) => (
-                <ProjectCard key={project._id} project={project} />
+            <ul className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+              {projects.map((project, index) => (
+                <li key={project._id}>
+                  <ProjectCard project={project} priority={index === 0} />
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
       </Container>
     </section>
-  );
-}
-
-function ProjectCard({ project }) {
-  return (
-    <div className="p-4 sm:p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 flex flex-col gap-6 sm:gap-8">
-      <div className="w-full h-64 sm:h-[500px] relative rounded-xl overflow-hidden">
-        <Image
-          src={project.image?.asset?.url || '/fallback.jpg'}
-          alt={project.title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          priority
-        />
-      </div>
-
-      <div className="flex flex-col gap-3">
-        <h4 className="text-lg font-semibold text-black dark:text-white">
-          {project.title}
-        </h4>
-        <p className="text-sm text-neutral-700 dark:text-neutral-400">
-          {project.description}
-        </p>
-      </div>
-    </div>
   );
 }

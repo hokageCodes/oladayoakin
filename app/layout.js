@@ -1,8 +1,11 @@
+// app/layout.js or app/layout.tsx
+
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/sections/CTASection";
 
+// ✅ This stays
 export const metadata = {
   title: "Oladayo Akinmokun – The Cyber Lawyer | Cybersecurity & Branding Expert",
   description:
@@ -31,7 +34,7 @@ export const metadata = {
     siteName: "The Cyber Lawyer",
     images: [
       {
-        url: "/og-image.jpg", // Replace with actual image
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Oladayo Akinmokun – The Cyber Lawyer",
@@ -43,7 +46,7 @@ export const metadata = {
     title: "Oladayo Akinmokun – The Cyber Lawyer",
     description:
       "Cybersecurity & Data Privacy Lawyer | Personal Branding Advocate | Speaker & Thought Leader",
-    site: "@oladayoakinmokun", // Replace with real Twitter
+    site: "@oladayoakinmokun",
     creator: "@oladayoakinmokun",
     images: ["/og-image.jpg"],
   },
@@ -52,12 +55,17 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
-  viewport: "width=device-width, initial-scale=1",
+  // ❌ Remove this line from metadata
+  // viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   authors: [{ name: "Oladayo Akinmokun" }],
 };
 
-
+// ✅ Move viewport to its own export
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function RootLayout({ children }) {
   return (

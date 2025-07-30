@@ -24,7 +24,7 @@ const Footer = () => {
             {/* Social Icons + Names */}
             <div className="flex flex-wrap gap-6 justify-center items-center">
               <a
-                href="https://linkedin.com/in/oladayoakinmokun"
+                href="http://linkedin.com/in/oladayoakinmokun"
                 target="_blank"
                 className="flex items-center gap-2 text-[#3D3C42] hover:opacity-80 dark:text-white"
               >
@@ -33,12 +33,12 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://instagram.com/oladayoakinmokun"
+                href="https://www.instagram.com/dayleekosmos_the_cyber_lawyer"
                 target="_blank"
                 className="flex items-center gap-2 text-[#3D3C42] hover:opacity-80 dark:text-white"
               >
                 <FaInstagram className="text-xl" />
-                <span>@oladayoakinmokun</span>
+                <span>@dayleekosmos_the_cyber_lawyer</span>
               </a>
 
               <a
@@ -53,10 +53,10 @@ const Footer = () => {
 
             {/* Navigation Links */}
             <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-[#3D3C42] text-center dark:text-[#E0E0E0]">
-              <a href="#" className="hover:underline">Home</a>
-              <a href="#" className="hover:underline">About</a>
-              <a href="#" className="hover:underline">Contact</a>
-              <a href="#" className="hover:underline">Blog</a>
+              <a href="#home" className="hover:underline">Home</a>
+              <a href="#about" className="hover:underline">About</a>
+              <a href="#projects" className="hover:underline">Projects</a>
+              <a href="#whatido" className="hover:underline">What I Do</a>
             </div>
 
             {/* Newsletter Signup */}
