@@ -52,7 +52,7 @@ const CyberLawyerHero = ({
   const isRounded = screenWidth > 375;
 
   return (
-    <div id="home" className="relative min-h-screen bg-white dark:bg-black overflow-hidden">
+    <div id="home" className="relative min-h-screen bg-black overflow-hidden">
       <Container className="pt-6 pb-4 md:pt-24 md:pb-10 px-2">
         <div className="flex flex-col gap-6 md:gap-8">
           <div className="flex flex-col gap-4 md:gap-6">

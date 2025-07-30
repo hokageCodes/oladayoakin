@@ -87,7 +87,7 @@ export default function SpeakingEngagements() {
   return (
     <section
       ref={containerRef}
-      className="relative dark:bg-black text-black dark:text-[#DCDFDF] md:[height:auto]"
+      className="relative bg-black md:[height:auto]"
       style={{
         height: getContainerHeight(),
       }}
@@ -138,7 +138,7 @@ export default function SpeakingEngagements() {
       {/* MOBILE VIEW */}
       <div className="md:hidden py-10">
         <Container>
-          <h2 className="text-[32px] font-medium leading-[40px] tracking-[-1px] text-center mb-10 text-[#152724] dark:text-white">
+          <h2 className="text-[32px] font-medium leading-[40px] tracking-[-1px] text-center mb-10 text-white">
             Speaking engagements & testimonials
           </h2>
 
