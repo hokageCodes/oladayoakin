@@ -101,13 +101,13 @@ const Awards = () => {
 
                       {/* Mobile preview image */}
                       {/* Always show image on mobile */}
-<div className="md:hidden mt-4 w-full h-64 rounded-lg overflow-hidden">
-  <img
-    src={urlFor(award.image).url()}
-    alt={award.title}
-    className="w-full h-full object-cover"
-  />
-</div>
+                      <div className="md:hidden mt-4 w-full h-64 rounded-lg overflow-hidden">
+                        <img
+                          src={urlFor(award.image).url()}
+                          alt={award.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
 
                     </motion.div>
                   ))}
