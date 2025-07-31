@@ -39,7 +39,7 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section id="projects" aria-labelledby="projects-heading" className="w-full bg-white dark:bg-black py-20">
+    <section id="projects" aria-labelledby="projects-heading" className="w-full black py-20">
       <Container className="px-2">
         <h2
           id="projects-heading"

@@ -146,7 +146,7 @@ export default function Navbar() {
           ))}
 
           <Link
-            href="#contact"
+            href="https://calendly.com/busayooladayo/30min"
             onClick={(e) => handleSmoothScroll(e, '#contact')}
             className="mt-10 px-6 py-3 bg-white text-black text-[16px] rounded-full font-medium hover:bg-opacity-90 transition cursor-pointer"
           >
