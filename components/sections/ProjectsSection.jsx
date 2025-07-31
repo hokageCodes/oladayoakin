@@ -39,11 +39,11 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section id="projects" aria-labelledby="projects-heading" className="w-full black py-20">
+    <section id="projects" aria-labelledby="projects-heading" className="w-full py-20">
       <Container className="px-2">
         <h2
           id="projects-heading"
-          className="text-xl font-medium text-black dark:text-white mb-10"
+          className="text-xl font-medium text-white mb-10"
         >
           • Projects & Collaborations
         </h2>
