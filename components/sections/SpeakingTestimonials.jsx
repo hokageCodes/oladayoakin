@@ -86,7 +86,7 @@ export default function SpeakingEngagements() {
 
   return (
     <section
-      id='whatido'
+      id="whatido"
       ref={containerRef}
       className="relative bg-black md:[height:auto]"
       style={{
@@ -148,7 +148,7 @@ export default function SpeakingEngagements() {
               ? Array.from({ length: 3 }).map((_, index) => (
                   <div
                     key={`mobile-skeleton-${index}`}
-                    className="w-full bg-white rounded-2xl p-4 mb-8 flex flex-col gap-4 shadow-md"
+                    className="w-full border border-[#ddd] rounded-2xl p-4 mb-8 flex flex-col gap-4"
                   >
                     <Skeleton height={240} borderRadius={12} />
                     <div>
@@ -160,7 +160,7 @@ export default function SpeakingEngagements() {
               : engagements.map((item, index) => (
                   <div
                     key={item._id || index}
-                    className="w-full bg-white rounded-2xl p-4 mb-8 flex flex-col gap-4 shadow-md"
+                    className="w-full border border-[#ddd] rounded-2xl p-4 mb-8 flex flex-col gap-4"
                   >
                     <div className="w-full h-[240px] rounded-[12px] overflow-hidden">
                       <Image
@@ -172,10 +172,10 @@ export default function SpeakingEngagements() {
                       />
                     </div>
                     <div>
-                      <h3 className="text-[24px] font-semibold leading-snug mb-1 text-black">
+                      <h3 className="text-[24px] font-semibold leading-snug mb-1 text-white">
                         {item.name}
                       </h3>
-                      <p className="text-[16px] leading-relaxed text-gray-700">
+                      <p className="text-[16px] leading-relaxed text-gray-400">
                         {item.description}
                       </p>
                     </div>
