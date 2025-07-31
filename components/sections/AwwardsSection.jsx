@@ -51,7 +51,7 @@ const Awards = () => {
   };
 
   return (
-    <section className="w-full py-12 md:py-20 bg-white text-black dark:bg-black dark:text-white relative">
+    <section className="w-full py-12 md:py-20 black text-white relative">
       <Container>
         <motion.div
           variants={containerVariants}
@@ -91,7 +91,7 @@ const Awards = () => {
                       onMouseLeave={() => setHoveredAward(null)}
                     >
                       <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <p className="text-black dark:text-white text-sm md:text-base">
+                        <p className="text-white text-sm md:text-base">
                           {award.title}
                         </p>
                         <span className="text-neutral-400 text-sm md:text-base mt-1 md:mt-0">

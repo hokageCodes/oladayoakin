@@ -74,7 +74,7 @@ export default function SpeakingEngagements() {
   const renderSkeletonCard = (_, index) => (
     <div
       key={`skeleton-${index}`}
-      className="w-full h-[344px] bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-10 flex gap-6 shadow-md"
+      className="w-full h-[344px] bg-white rounded-2xl p-4 mb-10 flex gap-6 shadow-md"
     >
       <Skeleton height={320} width={320} borderRadius={12} />
       <div className="flex flex-col justify-center flex-1">
@@ -86,6 +86,7 @@ export default function SpeakingEngagements() {
 
   return (
     <section
+      id='whatido'
       ref={containerRef}
       className="relative bg-black md:[height:auto]"
       style={{
@@ -97,7 +98,7 @@ export default function SpeakingEngagements() {
         <Container>
           <div className="w-full flex gap-10">
             <div className="w-[371px] sticky top-20">
-              <h2 className="font-darkerGrotesque text-[64px] font-medium leading-[64px] tracking-[-2px] capitalize text-[#152724] dark:text-white">
+              <h2 className="font-darkerGrotesque text-[64px] font-medium leading-[64px] tracking-[-2px] capitalize text-white">
                 Speaking engagements & testimonials
               </h2>
             </div>
@@ -108,7 +109,7 @@ export default function SpeakingEngagements() {
                   : engagements.map((item, index) => (
                       <div
                         key={item._id || index}
-                        className="w-full h-[344px] bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-10 flex gap-6 shadow-md"
+                        className="w-full h-[344px] bg-white rounded-2xl p-4 mb-10 flex gap-6 shadow-md"
                       >
                         <div className="w-[320px] h-[320px] rounded-[12px] overflow-hidden">
                           <Image
@@ -120,10 +121,10 @@ export default function SpeakingEngagements() {
                           />
                         </div>
                         <div className="flex flex-col justify-center flex-1">
-                          <h3 className="text-[36px] font-semibold leading-tight mb-2">
+                          <h3 className="text-[36px] font-semibold leading-tight mb-2 text-black">
                             {item.name}
                           </h3>
-                          <p className="text-[20px] leading-snug text-gray-700 dark:text-gray-300">
+                          <p className="text-[20px] leading-snug text-gray-700">
                             {item.description}
                           </p>
                         </div>
@@ -147,7 +148,7 @@ export default function SpeakingEngagements() {
               ? Array.from({ length: 3 }).map((_, index) => (
                   <div
                     key={`mobile-skeleton-${index}`}
-                    className="w-full bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-8 flex flex-col gap-4 shadow-md"
+                    className="w-full bg-white rounded-2xl p-4 mb-8 flex flex-col gap-4 shadow-md"
                   >
                     <Skeleton height={240} borderRadius={12} />
                     <div>
@@ -159,7 +160,7 @@ export default function SpeakingEngagements() {
               : engagements.map((item, index) => (
                   <div
                     key={item._id || index}
-                    className="w-full bg-white dark:bg-neutral-900 rounded-2xl p-4 mb-8 flex flex-col gap-4 shadow-md"
+                    className="w-full bg-white rounded-2xl p-4 mb-8 flex flex-col gap-4 shadow-md"
                   >
                     <div className="w-full h-[240px] rounded-[12px] overflow-hidden">
                       <Image
@@ -171,10 +172,10 @@ export default function SpeakingEngagements() {
                       />
                     </div>
                     <div>
-                      <h3 className="text-[24px] font-semibold leading-snug mb-1">
+                      <h3 className="text-[24px] font-semibold leading-snug mb-1 text-black">
                         {item.name}
                       </h3>
-                      <p className="text-[16px] leading-relaxed text-gray-700 dark:text-gray-300">
+                      <p className="text-[16px] leading-relaxed text-gray-700">
                         {item.description}
                       </p>
                     </div>

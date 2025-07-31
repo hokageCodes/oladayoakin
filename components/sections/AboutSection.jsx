@@ -36,7 +36,7 @@ const AboutSection = () => {
       id="about"
       aria-labelledby="about-heading"
       aria-label="About Me Section"
-      className="w-full bg-black pt-10 md:pt-20 text-neutral-400"
+      className="w-full bg-black pt-10 md:pt-20 text-neutral-200"
     >
       <Container className="px-2">
         <motion.div
@@ -82,7 +82,7 @@ const AboutSection = () => {
 
             {/* Closing Statement */}
             <div className="lg:col-span-3 text-center mx-auto max-w-3xl pt-8 text-base sm:text-lg font-medium leading-relaxed">
-              <p className="text-neutral-400">
+              <p className="text-white">
                 If you are looking for a lawyer who blends legal expertise with digital risk strategy, and is passionate
                 about growing the next generation, you are in the right place.
               </p>
