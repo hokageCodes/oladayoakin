@@ -5,50 +5,58 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FiSend } from 'react-icons/fi';
 import { ClipLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
 
 const NewsletterForm = () => {
-  const [status, setStatus] = useState('idle'); // idle | loading | success | error
-  const [message, setMessage] = useState('');
-  const [showModal, setShowModal] = useState(false);
+  const [status, setStatus] = useState('idle');
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    website: Yup.string().max(0), // hidden honeypot field
+    email: Yup.string()
+      .email('Please enter a valid email')
+      .required('Email is required'),
+    website: Yup.string().max(0), // Honeypot field
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    if (values.website) return; // caught bot
+  const handleSubmit = async (values, { resetForm }) => {
+  if (values.website) return;
 
-    setStatus('loading');
-    setMessage('');
+  setStatus('loading');
 
-    try {
-      const substackUrl = 'https://oladayoakinmokun.substack.com/subscribe';
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: values.email }),
+    });
 
-      if (typeof window !== 'undefined') {
-        if (window.innerWidth >= 768) {
-          // Desktop: open in new tab
-          window.open(substackUrl, '_blank');
-        } else {
-          // Mobile: open modal
-          setShowModal(true);
-        }
-      }
+    const data = await res.json();
 
+    if (res.ok) {
+      toast.success('🎉 Subscribed! Check your inbox to confirm.');
       setStatus('success');
-      setMessage('Thanks for subscribing!');
       resetForm();
-    } catch (err) {
+    } else {
+      if (data?.error?.includes('already subscribed')) {
+        toast.info('⚠️ You’re already subscribed.');
+      } else if (data?.error?.includes('not confirmed')) {
+        toast.info('📩 Check your inbox to confirm subscription.');
+      } else {
+        toast.error(data?.error || 'Something went wrong.');
+      }
       setStatus('error');
-      setMessage('Something went wrong. Please try again.');
-    } finally {
-      setTimeout(() => setStatus('idle'), 1500); // optional: reset after delay
     }
-  };
+  } catch (err) {
+    toast.error('🚫 Network error. Please try again later.');
+    setStatus('error');
+  }
+};
+
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <p className="text-white text-sm font-medium text-center mb-2">Subscribe to my Newsletter</p>
+      <p className="text-white text-sm font-medium text-center mb-2">
+        Subscribe to my Newsletter
+      </p>
 
       <Formik
         initialValues={{ email: '', website: '' }}
@@ -81,39 +89,9 @@ const NewsletterForm = () => {
             </div>
 
             <ErrorMessage name="email" component="div" className="text-xs text-red-400 text-center" />
-
-            {message && (
-              <p className={`text-xs text-center ${status === 'success' ? 'text-green-400' : 'text-red-400'}`}>
-                {message}
-              </p>
-            )}
           </Form>
         )}
       </Formik>
-
-      {/* Mobile-only Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center px-4">
-          <div className="bg-white rounded-xl shadow-xl w-full max-w-sm p-4 relative">
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute top-2 right-3 text-black text-lg font-bold"
-            >
-              ×
-            </button>
-            <iframe
-            src="https://oladayoakinmokun.substack.com/embed"
-            width="100%"
-            height="320"
-            style={{ border: '1px solid #EEE', background: 'white' }}
-            frameBorder="0"
-            scrolling="no"
-            title="Subscribe"
-            />
-
-          </div>
-        </div>
-      )}
     </div>
   );
 };

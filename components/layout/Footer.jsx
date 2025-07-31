@@ -6,7 +6,6 @@ import {
   FaYoutube,
 } from 'react-icons/fa';
 import Container from '../Container';
-import NewsletterForm from '../NewsLetterForm';
 
 const Footer = () => {
   return (
@@ -63,8 +62,16 @@ const Footer = () => {
 
             <div className="md:hidden w-full h-px bg-white" />
 
-            {/* Newsletter Form */}
-            <NewsletterForm />
+            {/* Newsletter Link */}
+            <a
+              href="https://oladayoakinmokun.substack.com/subscribe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full max-w-md text-center text-white font-medium text-sm border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all"
+            >
+              📬 Subscribe to my Newsletter
+            </a>
+
             {/* Divider */}
             <div className="w-full h-px bg-white" />
 

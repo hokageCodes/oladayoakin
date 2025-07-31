@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/sections/CTASection";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // ✅ This stays
 export const metadata = {
@@ -72,9 +74,21 @@ export default function RootLayout({ children }) {
     <html lang="en" className="bg-black scroll-smooth">
       <body className="bg-black text-[#111827] dark:text-white font-sans min-h-screen flex flex-col">
         <Navbar />
+        <ToastContainer />
         <main className="flex-grow">
           {children}
+
           <CTASection />
+          <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="dark"
+        />
         </main>
         <Footer />
       </body>
