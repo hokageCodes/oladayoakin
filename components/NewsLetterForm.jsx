@@ -1,36 +1,48 @@
 'use client';
 
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FiSend } from 'react-icons/fi';
 import { ClipLoader } from 'react-spinners';
-import { useState } from 'react';
 
 const NewsletterForm = () => {
-  const [status, setStatus] = useState('idle'); // Removed TypeScript annotation
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
   const [message, setMessage] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
-    website: Yup.string().max(0), // Honeypot field for spam
+    website: Yup.string().max(0), // hidden honeypot field
   });
 
-  const handleSubmit = async (values, { resetForm }) => {
-    if (values.website) return; // bot caught in honeypot
+  const handleSubmit = (values, { resetForm }) => {
+    if (values.website) return; // caught bot
 
     setStatus('loading');
     setMessage('');
 
     try {
-      // Simulate async request - replace this with your own logic
-      await new Promise((res) => setTimeout(res, 1500));
+      const substackUrl = 'https://oladayoakinmokun.substack.com/subscribe';
+
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth >= 768) {
+          // Desktop: open in new tab
+          window.open(substackUrl, '_blank');
+        } else {
+          // Mobile: open modal
+          setShowModal(true);
+        }
+      }
 
       setStatus('success');
-      setMessage('Subscribed successfully!');
+      setMessage('Thanks for subscribing!');
       resetForm();
-    } catch (error) {
+    } catch (err) {
       setStatus('error');
       setMessage('Something went wrong. Please try again.');
+    } finally {
+      setTimeout(() => setStatus('idle'), 1500); // optional: reset after delay
     }
   };
 
@@ -45,7 +57,7 @@ const NewsletterForm = () => {
       >
         {({ isSubmitting }) => (
           <Form className="flex flex-col gap-3">
-            {/* Honeypot (invisible to users) */}
+            {/* Honeypot */}
             <Field type="text" name="website" className="hidden" />
 
             <div className={`flex items-center gap-2 border ${status === 'error' ? 'border-red-500' : 'border-white'} rounded-full px-4 py-2`}>
@@ -54,14 +66,17 @@ const NewsletterForm = () => {
                 name="email"
                 placeholder="enter email here"
                 className="flex-1 bg-transparent outline-none text-sm placeholder-gray-400 text-white"
-                style={{ backgroundColor: 'transparent' }}
               />
               <button
                 type="submit"
                 disabled={isSubmitting || status === 'loading'}
                 className="text-white bg-[#3D3C42] hover:bg-[#3F2E3E] p-2 rounded-full transition-all"
               >
-                {status === 'loading' ? <ClipLoader size={16} color="#fff" /> : <FiSend className="w-5 h-5" />}
+                {status === 'loading' ? (
+                  <ClipLoader size={16} color="#fff" />
+                ) : (
+                  <FiSend className="w-5 h-5" />
+                )}
               </button>
             </div>
 
@@ -75,6 +90,30 @@ const NewsletterForm = () => {
           </Form>
         )}
       </Formik>
+
+      {/* Mobile-only Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center px-4">
+          <div className="bg-white rounded-xl shadow-xl w-full max-w-sm p-4 relative">
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-2 right-3 text-black text-lg font-bold"
+            >
+              ×
+            </button>
+            <iframe
+            src="https://oladayoakinmokun.substack.com/embed"
+            width="100%"
+            height="320"
+            style={{ border: '1px solid #EEE', background: 'white' }}
+            frameBorder="0"
+            scrolling="no"
+            title="Subscribe"
+            />
+
+          </div>
+        </div>
+      )}
     </div>
   );
 };
