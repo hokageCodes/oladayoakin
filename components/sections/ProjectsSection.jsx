@@ -67,7 +67,7 @@ export default function ProjectsSection() {
             </div>
           </div>
         ) : projects.length === 0 ? (
-          <div className="text-center text-neutral-700 dark:text-neutral-400 text-lg mt-10">
+          <div className="text-center text-white text-lg mt-10">
             🚧 No projects have been published yet.
             <br />
             Stay tuned for upcoming work!
