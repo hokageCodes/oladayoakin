@@ -75,7 +75,7 @@ const GiftIcon = () => {
       >
         <FaGift className="text-white text-2xl" />
       </button>
-      <span className="text-sm text-white">{total} Happy Days 🎉</span>
+      <span className="text-sm text-white">{total} Birthday Blessings🎉</span>
     </div>
   );
 };
