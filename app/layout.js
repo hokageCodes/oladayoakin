@@ -6,6 +6,9 @@ import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/sections/CTASection";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GiftClientWrapper from "@/components/layout/GiftClientWrapper";
+import { Analytics } from "@vercel/analytics/next"
+
 
 // ✅ This stays
 export const metadata = {
@@ -87,9 +90,11 @@ export default function RootLayout({ children }) {
           closeOnClick
           pauseOnHover
           draggable
-          theme="dark"
+          // theme="dark"
         />
         </main>
+        <GiftClientWrapper />
+        <Analytics />
         <Footer />
       </body>
     </html>
