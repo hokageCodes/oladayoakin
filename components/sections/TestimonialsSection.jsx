@@ -45,13 +45,13 @@ export default function TestimonialsSection() {
           <p className="text-xl font-normal text-gray-300 mb-2 tracking-widest uppercase">
             Testimonials
           </p>
-          <h2 className="text-[40px] md:text-[60px] lg:text-[72px] font-medium leading-[90%] text-white tracking-[-2px] capitalize">
-            What people say <br /> about me
+          <h2 className="text-4xl md:text-5xl font-medium leading-[90%] text-white tracking-[-2px] capitalize">
+            What people say about me
           </h2>
         </div>
 
         {/* Right Testimonial Card */}
-        <div className="w-full max-w-[632px] relative text-justify">
+        <div className="w-full max-w-[832px] relative text-justify">
           {loading || testimonials.length === 0 ? (
             <div className="bg-white rounded-2xl p-6 h-[428px] flex flex-col justify-between">
               <Skeleton count={3} height={20} />

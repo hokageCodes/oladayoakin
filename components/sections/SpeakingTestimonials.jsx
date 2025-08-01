@@ -98,7 +98,7 @@ export default function SpeakingEngagements() {
         <Container>
           <div className="w-full flex gap-10">
             <div className="w-[371px] sticky top-20">
-              <h2 className="font-darkerGrotesque text-[64px] font-medium leading-[64px] tracking-[-2px] capitalize text-white">
+              <h2 className="font-darkerGrotesque text-4xl md:text-5xl font-medium leading-[64px] tracking-[-2px] capitalize text-white">
                 Speaking engagements & testimonials
               </h2>
             </div>

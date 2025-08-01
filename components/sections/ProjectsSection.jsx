@@ -43,7 +43,7 @@ export default function ProjectsSection() {
       <Container className="px-2">
         <h2
           id="projects-heading"
-          className="text-xl font-medium text-white mb-10"
+          className="text-4xl md:5xl font-medium text-white mb-10"
         >
           • Projects & Collaborations
         </h2>

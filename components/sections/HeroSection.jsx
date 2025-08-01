@@ -7,9 +7,8 @@ const CyberLawyerHero = ({
   name = 'Oladayo Akinmokun',
   title = 'The Cyber Lawyer',
   tagline = 'Helping businesses and professionals navigate Cybersecurity, Data Privacy, and Personal Branding.',
-  imageUrl = '/ccc.webm',
-  posterImage = '/oladayo-akinmokun.webp',
-  calendlyUrl = 'https://calendly.com/busayooladayo/30min', // Add your actual Calendly URL here
+  imageUrl = '/hero-hero.svg', // Changed from video to image
+  calendlyUrl = 'https://calendly.com/busayooladayo/30min',
   onConsultationRequest,
 }) => {
   const [buttonState, setButtonState] = useState('idle');
@@ -138,32 +137,15 @@ const CyberLawyerHero = ({
           </div>
 
           <div className="w-full bg-black rounded-2xl shadow-lg overflow-hidden p-2 sm:p-3">
-            {screenWidth > 768 ? (
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                fetchPriority="high"
-                poster={posterImage}
-                className="w-full h-[650px] object-cover object-top rounded-xl"
-              >
-                <source src={imageUrl} type="video/webm" />
-                <source src={imageUrl.replace('.webm', '.mp4')} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            ) : (
-              <Image
-                src={posterImage}
-                alt={`${name} - Hero`}
-                priority
-                fetchPriority="high"
-                width={400}
-                height={650}
-                className="w-full h-auto object-cover rounded-xl"
-              />
-            )}
+            <Image
+              src={imageUrl}
+              alt={`${name} - Hero`}
+              priority
+              fetchPriority="high"
+              width={800}
+              height={650}
+              className="w-full h-[900px] object-cover object-top rounded-xl"
+            />
           </div>
         </div>
       </Container>

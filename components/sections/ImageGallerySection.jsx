@@ -26,7 +26,7 @@ export default function ImageGallery() {
   return (
     <section className="w-full py-16 overflow-hidden bg-black">
       <Container>
-        <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-10 text-white">
+        <h2 className="text-4xl md:text-5xl font-semibold text-center mb-10 text-white">
           Photo Dump
         </h2>
 
