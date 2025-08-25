@@ -53,7 +53,7 @@ export default function BookedVisiblePaid() {
             <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
               <div>
                 <Calendar className="w-6 h-6 mx-auto mb-1" />
-                <p className="text-gray-400 text-sm">Aug 23, 2025</p>
+                <p className="text-gray-400 text-sm">Aug 30, 2025</p>
               </div>
               <div>
                 <Clock className="w-6 h-6 mx-auto mb-1" />
@@ -108,7 +108,7 @@ export default function BookedVisiblePaid() {
         </Container>
       </section>
 
-      {/* Speaker Section */}
+      {/* Featured Speaker Section */}
       <section className="bg-black text-white py-10">
         <Container className="flex flex-col md:flex-row items-center md:items-start gap-12">
           <div className="md:w-[55%]">
@@ -124,6 +124,13 @@ export default function BookedVisiblePaid() {
               className="w-full rounded-lg shadow-lg"
             />
           </div>
+        </Container>
+      </section>
+
+      {/* Always Visible Registration Form */}
+      <section className="bg-black text-white py-10">
+        <Container>
+          <RegistrationForm />
         </Container>
       </section>
 
