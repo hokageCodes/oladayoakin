@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { db } from '../lib/firebase';
+import { db } from '../firebase';
 import { doc, getDoc, updateDoc, setDoc, increment } from 'firebase/firestore';
 import { FaGift } from 'react-icons/fa';
 import { runConfetti } from '../utils/confetti';
